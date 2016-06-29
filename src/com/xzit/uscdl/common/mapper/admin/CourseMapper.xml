@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.uscdl.common.mapper.admin.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.admin.Course" >
+    <id column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="total_credit" property="totalCredit" jdbcType="REAL" />
+    <result column="theoty_credit" property="theotyCredit" jdbcType="REAL" />
+    <result column="practice_credit" property="practiceCredit" jdbcType="REAL" />
+    <result column="model_type" property="modelType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    course_id, course_name, total_credit, theoty_credit, practice_credit, model_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.admin.Course" >
+    insert into course (course_id, course_name, total_credit, 
+      theoty_credit, practice_credit, model_type
+      )
+    values (#{courseId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{totalCredit,jdbcType=REAL}, 
+      #{theotyCredit,jdbcType=REAL}, #{practiceCredit,jdbcType=REAL}, #{modelType,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.admin.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="totalCredit != null" >
+        total_credit,
+      </if>
+      <if test="theotyCredit != null" >
+        theoty_credit,
+      </if>
+      <if test="practiceCredit != null" >
+        practice_credit,
+      </if>
+      <if test="modelType != null" >
+        model_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCredit != null" >
+        #{totalCredit,jdbcType=REAL},
+      </if>
+      <if test="theotyCredit != null" >
+        #{theotyCredit,jdbcType=REAL},
+      </if>
+      <if test="practiceCredit != null" >
+        #{practiceCredit,jdbcType=REAL},
+      </if>
+      <if test="modelType != null" >
+        #{modelType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.admin.Course" >
+    update course
+    <set >
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCredit != null" >
+        total_credit = #{totalCredit,jdbcType=REAL},
+      </if>
+      <if test="theotyCredit != null" >
+        theoty_credit = #{theotyCredit,jdbcType=REAL},
+      </if>
+      <if test="practiceCredit != null" >
+        practice_credit = #{practiceCredit,jdbcType=REAL},
+      </if>
+      <if test="modelType != null" >
+        model_type = #{modelType,jdbcType=CHAR},
+      </if>
+    </set>
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.admin.Course" >
+    update course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      total_credit = #{totalCredit,jdbcType=REAL},
+      theoty_credit = #{theotyCredit,jdbcType=REAL},
+      practice_credit = #{practiceCredit,jdbcType=REAL},
+      model_type = #{modelType,jdbcType=CHAR}
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </update>
+</mapper>

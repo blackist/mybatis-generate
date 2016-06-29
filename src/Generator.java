@@ -10,10 +10,10 @@ import org.mybatis.generator.internal.DefaultShellCallback;
 /**
  * @Title: Generator.java
  * @Package
- * @Description: Éú³É java´úÂëµÄÖ÷¹¦ÄÜº¯Êı
+ * @Description: ï¿½ï¿½ï¿½ javaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Üºï¿½ï¿½ï¿½
  * @Company: www.xzit.edu.cn
  * @author Mr.Black 1075512174@qq.com
- * @date 2015Äê11ÔÂ29ÈÕ ÏÂÎç10:11:39
+ * @date 2015ï¿½ï¿½11ï¿½ï¿½29ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½10:11:39
  * @version V1.0
  */
 public class Generator {

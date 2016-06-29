@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.uscdl.common.mapper.exam.AnswerMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.exam.Answer" >
+    <id column="ans_id" property="ansId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="ques_id" property="quesId" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="REAL" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="state_date" property="stateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xzit.uscdl.common.po.exam.Answer" extends="BaseResultMap" >
+    <result column="ans_content" property="ansContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ans_id, user_id, ques_id, score, state, state_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    ans_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from answer
+    where ans_id = #{ansId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from answer
+    where ans_id = #{ansId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.exam.Answer" >
+    insert into answer (ans_id, user_id, ques_id, 
+      score, state, state_date, 
+      ans_content)
+    values (#{ansId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{quesId,jdbcType=INTEGER}, 
+      #{score,jdbcType=REAL}, #{state,jdbcType=CHAR}, #{stateDate,jdbcType=TIMESTAMP}, 
+      #{ansContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.exam.Answer" >
+    insert into answer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ansId != null" >
+        ans_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="quesId != null" >
+        ques_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDate != null" >
+        state_date,
+      </if>
+      <if test="ansContent != null" >
+        ans_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ansId != null" >
+        #{ansId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="quesId != null" >
+        #{quesId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDate != null" >
+        #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ansContent != null" >
+        #{ansContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.exam.Answer" >
+    update answer
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="quesId != null" >
+        ques_id = #{quesId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDate != null" >
+        state_date = #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ansContent != null" >
+        ans_content = #{ansContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ans_id = #{ansId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xzit.uscdl.common.po.exam.Answer" >
+    update answer
+    set user_id = #{userId,jdbcType=INTEGER},
+      ques_id = #{quesId,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      state = #{state,jdbcType=CHAR},
+      state_date = #{stateDate,jdbcType=TIMESTAMP},
+      ans_content = #{ansContent,jdbcType=LONGVARCHAR}
+    where ans_id = #{ansId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.exam.Answer" >
+    update answer
+    set user_id = #{userId,jdbcType=INTEGER},
+      ques_id = #{quesId,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      state = #{state,jdbcType=CHAR},
+      state_date = #{stateDate,jdbcType=TIMESTAMP}
+    where ans_id = #{ansId,jdbcType=INTEGER}
+  </update>
+</mapper>

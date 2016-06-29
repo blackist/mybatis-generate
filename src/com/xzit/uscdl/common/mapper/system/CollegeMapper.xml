@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xzit.uscdl.common.mapper.system.CollegeMapper">
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.system.College">
+    <id column="college_id" jdbcType="INTEGER" property="collegeId" />
+    <result column="edu_type" jdbcType="VARCHAR" property="eduType" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zipcode" jdbcType="CHAR" property="zipcode" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="private_num" jdbcType="INTEGER" property="privateNum" />
+    <result column="private_atta_path" jdbcType="VARCHAR" property="privateAttaPath" />
+    <result column="private_state" jdbcType="INTEGER" property="privateState" />
+    <result column="team_num" jdbcType="INTEGER" property="teamNum" />
+    <result column="team_atta_path" jdbcType="VARCHAR" property="teamAttaPath" />
+    <result column="team_state" jdbcType="INTEGER" property="teamState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    college_id, edu_type, address, zipcode, province, private_num, private_atta_path, 
+    private_state, team_num, team_atta_path, team_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from college
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from college
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.system.College">
+    insert into college (college_id, edu_type, address, 
+      zipcode, province, private_num, 
+      private_atta_path, private_state, team_num, 
+      team_atta_path, team_state)
+    values (#{collegeId,jdbcType=INTEGER}, #{eduType,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=CHAR}, #{province,jdbcType=VARCHAR}, #{privateNum,jdbcType=INTEGER}, 
+      #{privateAttaPath,jdbcType=VARCHAR}, #{privateState,jdbcType=INTEGER}, #{teamNum,jdbcType=INTEGER}, 
+      #{teamAttaPath,jdbcType=VARCHAR}, #{teamState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.system.College">
+    insert into college
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collegeId != null">
+        college_id,
+      </if>
+      <if test="eduType != null">
+        edu_type,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="privateNum != null">
+        private_num,
+      </if>
+      <if test="privateAttaPath != null">
+        private_atta_path,
+      </if>
+      <if test="privateState != null">
+        private_state,
+      </if>
+      <if test="teamNum != null">
+        team_num,
+      </if>
+      <if test="teamAttaPath != null">
+        team_atta_path,
+      </if>
+      <if test="teamState != null">
+        team_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collegeId != null">
+        #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="eduType != null">
+        #{eduType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="privateNum != null">
+        #{privateNum,jdbcType=INTEGER},
+      </if>
+      <if test="privateAttaPath != null">
+        #{privateAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="privateState != null">
+        #{privateState,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null">
+        #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamAttaPath != null">
+        #{teamAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="teamState != null">
+        #{teamState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.system.College">
+    update college
+    <set>
+      <if test="eduType != null">
+        edu_type = #{eduType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="privateNum != null">
+        private_num = #{privateNum,jdbcType=INTEGER},
+      </if>
+      <if test="privateAttaPath != null">
+        private_atta_path = #{privateAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="privateState != null">
+        private_state = #{privateState,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null">
+        team_num = #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamAttaPath != null">
+        team_atta_path = #{teamAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="teamState != null">
+        team_state = #{teamState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.system.College">
+    update college
+    set edu_type = #{eduType,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=CHAR},
+      province = #{province,jdbcType=VARCHAR},
+      private_num = #{privateNum,jdbcType=INTEGER},
+      private_atta_path = #{privateAttaPath,jdbcType=VARCHAR},
+      private_state = #{privateState,jdbcType=INTEGER},
+      team_num = #{teamNum,jdbcType=INTEGER},
+      team_atta_path = #{teamAttaPath,jdbcType=VARCHAR},
+      team_state = #{teamState,jdbcType=INTEGER}
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.system.College">
+    <id column="college_id" jdbcType="INTEGER" property="collegeId" />
+    <result column="edu_type" jdbcType="VARCHAR" property="eduType" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zipcode" jdbcType="CHAR" property="zipcode" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="private_num" jdbcType="INTEGER" property="privateNum" />
+    <result column="private_atta_path" jdbcType="VARCHAR" property="privateAttaPath" />
+    <result column="private_state" jdbcType="INTEGER" property="privateState" />
+    <result column="team_num" jdbcType="INTEGER" property="teamNum" />
+    <result column="team_atta_path" jdbcType="VARCHAR" property="teamAttaPath" />
+    <result column="team_state" jdbcType="INTEGER" property="teamState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    college_id, edu_type, address, zipcode, province, private_num, private_atta_path, 
+    private_state, team_num, team_atta_path, team_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from college
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from college
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.system.College">
+    insert into college (college_id, edu_type, address, 
+      zipcode, province, private_num, 
+      private_atta_path, private_state, team_num, 
+      team_atta_path, team_state)
+    values (#{collegeId,jdbcType=INTEGER}, #{eduType,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=CHAR}, #{province,jdbcType=VARCHAR}, #{privateNum,jdbcType=INTEGER}, 
+      #{privateAttaPath,jdbcType=VARCHAR}, #{privateState,jdbcType=INTEGER}, #{teamNum,jdbcType=INTEGER}, 
+      #{teamAttaPath,jdbcType=VARCHAR}, #{teamState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.system.College">
+    insert into college
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collegeId != null">
+        college_id,
+      </if>
+      <if test="eduType != null">
+        edu_type,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="zipcode != null">
+        zipcode,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="privateNum != null">
+        private_num,
+      </if>
+      <if test="privateAttaPath != null">
+        private_atta_path,
+      </if>
+      <if test="privateState != null">
+        private_state,
+      </if>
+      <if test="teamNum != null">
+        team_num,
+      </if>
+      <if test="teamAttaPath != null">
+        team_atta_path,
+      </if>
+      <if test="teamState != null">
+        team_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collegeId != null">
+        #{collegeId,jdbcType=INTEGER},
+      </if>
+      <if test="eduType != null">
+        #{eduType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="privateNum != null">
+        #{privateNum,jdbcType=INTEGER},
+      </if>
+      <if test="privateAttaPath != null">
+        #{privateAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="privateState != null">
+        #{privateState,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null">
+        #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamAttaPath != null">
+        #{teamAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="teamState != null">
+        #{teamState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.system.College">
+    update college
+    <set>
+      <if test="eduType != null">
+        edu_type = #{eduType,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        zipcode = #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="privateNum != null">
+        private_num = #{privateNum,jdbcType=INTEGER},
+      </if>
+      <if test="privateAttaPath != null">
+        private_atta_path = #{privateAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="privateState != null">
+        private_state = #{privateState,jdbcType=INTEGER},
+      </if>
+      <if test="teamNum != null">
+        team_num = #{teamNum,jdbcType=INTEGER},
+      </if>
+      <if test="teamAttaPath != null">
+        team_atta_path = #{teamAttaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="teamState != null">
+        team_state = #{teamState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.system.College">
+    update college
+    set edu_type = #{eduType,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=CHAR},
+      province = #{province,jdbcType=VARCHAR},
+      private_num = #{privateNum,jdbcType=INTEGER},
+      private_atta_path = #{privateAttaPath,jdbcType=VARCHAR},
+      private_state = #{privateState,jdbcType=INTEGER},
+      team_num = #{teamNum,jdbcType=INTEGER},
+      team_atta_path = #{teamAttaPath,jdbcType=VARCHAR},
+      team_state = #{teamState,jdbcType=INTEGER}
+    where college_id = #{collegeId,jdbcType=INTEGER}
+  </update>
+</mapper>

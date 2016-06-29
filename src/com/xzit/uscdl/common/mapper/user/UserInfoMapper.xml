@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.uscdl.common.mapper.user.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.user.UserInfo" >
+    <id column="user_info_id" property="userInfoId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="zipcode" property="zipcode" jdbcType="CHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="certi_type" property="certiType" jdbcType="CHAR" />
+    <result column="certi_number" property="certiNumber" jdbcType="CHAR" />
+    <result column="certi_image_path" property="certiImagePath" jdbcType="VARCHAR" />
+    <result column="photo_image_path" property="photoImagePath" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_info_id, name, sex, birthday, address, zipcode, phone, certi_type, certi_number, 
+    certi_image_path, photo_image_path, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_info_id = #{userInfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where user_info_id = #{userInfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.user.UserInfo" >
+    insert into user_info (user_info_id, name, sex, 
+      birthday, address, zipcode, 
+      phone, certi_type, certi_number, 
+      certi_image_path, photo_image_path, user_id
+      )
+    values (#{userInfoId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, #{zipcode,jdbcType=CHAR}, 
+      #{phone,jdbcType=CHAR}, #{certiType,jdbcType=CHAR}, #{certiNumber,jdbcType=CHAR}, 
+      #{certiImagePath,jdbcType=VARCHAR}, #{photoImagePath,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.user.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        user_info_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="zipcode != null" >
+        zipcode,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="certiType != null" >
+        certi_type,
+      </if>
+      <if test="certiNumber != null" >
+        certi_number,
+      </if>
+      <if test="certiImagePath != null" >
+        certi_image_path,
+      </if>
+      <if test="photoImagePath != null" >
+        photo_image_path,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userInfoId != null" >
+        #{userInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="certiType != null" >
+        #{certiType,jdbcType=CHAR},
+      </if>
+      <if test="certiNumber != null" >
+        #{certiNumber,jdbcType=CHAR},
+      </if>
+      <if test="certiImagePath != null" >
+        #{certiImagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="photoImagePath != null" >
+        #{photoImagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.user.UserInfo" >
+    update user_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        zipcode = #{zipcode,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="certiType != null" >
+        certi_type = #{certiType,jdbcType=CHAR},
+      </if>
+      <if test="certiNumber != null" >
+        certi_number = #{certiNumber,jdbcType=CHAR},
+      </if>
+      <if test="certiImagePath != null" >
+        certi_image_path = #{certiImagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="photoImagePath != null" >
+        photo_image_path = #{photoImagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_info_id = #{userInfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.user.UserInfo" >
+    update user_info
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR},
+      zipcode = #{zipcode,jdbcType=CHAR},
+      phone = #{phone,jdbcType=CHAR},
+      certi_type = #{certiType,jdbcType=CHAR},
+      certi_number = #{certiNumber,jdbcType=CHAR},
+      certi_image_path = #{certiImagePath,jdbcType=VARCHAR},
+      photo_image_path = #{photoImagePath,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
+    where user_info_id = #{userInfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

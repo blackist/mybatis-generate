@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.ar.common.mapper.UserResumeMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.ar.common.po.UserResume" >
+    <id column="resume_id" property="resumeId" jdbcType="INTEGER" />
+    <result column="resume_title" property="resumeTitle" jdbcType="VARCHAR" />
+    <result column="prof_type" property="profType" jdbcType="VARCHAR" />
+    <result column="exp_salary" property="expSalary" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="domicile" property="domicile" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="image_id" property="imageId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="state_time" property="stateTime" jdbcType="TIMESTAMP" />
+    <result column="exp1" property="exp1" jdbcType="VARCHAR" />
+    <result column="exp2" property="exp2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    resume_id, resume_title, prof_type, exp_salary, name, sex, domicile, contact, introduce, 
+    image_id, user_id, state, state_time, exp1, exp2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_resume
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_resume
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.ar.common.po.UserResume" >
+    insert into user_resume (resume_id, resume_title, prof_type, 
+      exp_salary, name, sex, 
+      domicile, contact, introduce, 
+      image_id, user_id, state, 
+      state_time, exp1, exp2
+      )
+    values (#{resumeId,jdbcType=INTEGER}, #{resumeTitle,jdbcType=VARCHAR}, #{profType,jdbcType=VARCHAR}, 
+      #{expSalary,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{domicile,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{imageId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{state,jdbcType=CHAR}, 
+      #{stateTime,jdbcType=TIMESTAMP}, #{exp1,jdbcType=VARCHAR}, #{exp2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.ar.common.po.UserResume" >
+    insert into user_resume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resumeId != null" >
+        resume_id,
+      </if>
+      <if test="resumeTitle != null" >
+        resume_title,
+      </if>
+      <if test="profType != null" >
+        prof_type,
+      </if>
+      <if test="expSalary != null" >
+        exp_salary,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="domicile != null" >
+        domicile,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="imageId != null" >
+        image_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateTime != null" >
+        state_time,
+      </if>
+      <if test="exp1 != null" >
+        exp1,
+      </if>
+      <if test="exp2 != null" >
+        exp2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=INTEGER},
+      </if>
+      <if test="resumeTitle != null" >
+        #{resumeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="profType != null" >
+        #{profType,jdbcType=VARCHAR},
+      </if>
+      <if test="expSalary != null" >
+        #{expSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="domicile != null" >
+        #{domicile,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="imageId != null" >
+        #{imageId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateTime != null" >
+        #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exp1 != null" >
+        #{exp1,jdbcType=VARCHAR},
+      </if>
+      <if test="exp2 != null" >
+        #{exp2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.ar.common.po.UserResume" >
+    update user_resume
+    <set >
+      <if test="resumeTitle != null" >
+        resume_title = #{resumeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="profType != null" >
+        prof_type = #{profType,jdbcType=VARCHAR},
+      </if>
+      <if test="expSalary != null" >
+        exp_salary = #{expSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="domicile != null" >
+        domicile = #{domicile,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="imageId != null" >
+        image_id = #{imageId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateTime != null" >
+        state_time = #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exp1 != null" >
+        exp1 = #{exp1,jdbcType=VARCHAR},
+      </if>
+      <if test="exp2 != null" >
+        exp2 = #{exp2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.ar.common.po.UserResume" >
+    update user_resume
+    set resume_title = #{resumeTitle,jdbcType=VARCHAR},
+      prof_type = #{profType,jdbcType=VARCHAR},
+      exp_salary = #{expSalary,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      domicile = #{domicile,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      image_id = #{imageId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      state = #{state,jdbcType=CHAR},
+      state_time = #{stateTime,jdbcType=TIMESTAMP},
+      exp1 = #{exp1,jdbcType=VARCHAR},
+      exp2 = #{exp2,jdbcType=VARCHAR}
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.uscdl.common.mapper.system.LeagueSessionMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.system.LeagueSession" >
+    <id column="session_value" property="sessionValue" jdbcType="CHAR" />
+    <result column="session_name" property="sessionName" jdbcType="VARCHAR" />
+    <result column="session_year" property="sessionYear" jdbcType="CHAR" />
+    <result column="is_current" property="isCurrent" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xzit.uscdl.common.po.system.LeagueSession" extends="BaseResultMap" >
+    <result column="session_theme" property="sessionTheme" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    session_value, session_name, session_year, is_current
+  </sql>
+  <sql id="Blob_Column_List" >
+    session_theme
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from league_session
+    where session_value = #{sessionValue,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from league_session
+    where session_value = #{sessionValue,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.system.LeagueSession" >
+    insert into league_session (session_value, session_name, session_year, 
+      is_current, session_theme)
+    values (#{sessionValue,jdbcType=CHAR}, #{sessionName,jdbcType=VARCHAR}, #{sessionYear,jdbcType=CHAR}, 
+      #{isCurrent,jdbcType=INTEGER}, #{sessionTheme,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.system.LeagueSession" >
+    insert into league_session
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionValue != null" >
+        session_value,
+      </if>
+      <if test="sessionName != null" >
+        session_name,
+      </if>
+      <if test="sessionYear != null" >
+        session_year,
+      </if>
+      <if test="isCurrent != null" >
+        is_current,
+      </if>
+      <if test="sessionTheme != null" >
+        session_theme,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionValue != null" >
+        #{sessionValue,jdbcType=CHAR},
+      </if>
+      <if test="sessionName != null" >
+        #{sessionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionYear != null" >
+        #{sessionYear,jdbcType=CHAR},
+      </if>
+      <if test="isCurrent != null" >
+        #{isCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="sessionTheme != null" >
+        #{sessionTheme,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.system.LeagueSession" >
+    update league_session
+    <set >
+      <if test="sessionName != null" >
+        session_name = #{sessionName,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionYear != null" >
+        session_year = #{sessionYear,jdbcType=CHAR},
+      </if>
+      <if test="isCurrent != null" >
+        is_current = #{isCurrent,jdbcType=INTEGER},
+      </if>
+      <if test="sessionTheme != null" >
+        session_theme = #{sessionTheme,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where session_value = #{sessionValue,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xzit.uscdl.common.po.system.LeagueSession" >
+    update league_session
+    set session_name = #{sessionName,jdbcType=VARCHAR},
+      session_year = #{sessionYear,jdbcType=CHAR},
+      is_current = #{isCurrent,jdbcType=INTEGER},
+      session_theme = #{sessionTheme,jdbcType=LONGVARCHAR}
+    where session_value = #{sessionValue,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.system.LeagueSession" >
+    update league_session
+    set session_name = #{sessionName,jdbcType=VARCHAR},
+      session_year = #{sessionYear,jdbcType=CHAR},
+      is_current = #{isCurrent,jdbcType=INTEGER}
+    where session_value = #{sessionValue,jdbcType=CHAR}
+  </update>
+</mapper>

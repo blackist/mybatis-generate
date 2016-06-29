@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.ar.common.mapper.UserJobMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.ar.common.po.UserJob" >
+    <id column="job_id" property="jobId" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="job_unit" property="jobUnit" jdbcType="VARCHAR" />
+    <result column="date_start" property="dateStart" jdbcType="DATE" />
+    <result column="date_end" property="dateEnd" jdbcType="DATE" />
+    <result column="job_desc" property="jobDesc" jdbcType="VARCHAR" />
+    <result column="isPublic" property="ispublic" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="state_time" property="stateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    job_id, job_name, job_unit, date_start, date_end, job_desc, isPublic, create_time, 
+    user_id, state, state_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_job
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_job
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.ar.common.po.UserJob" >
+    insert into user_job (job_id, job_name, job_unit, 
+      date_start, date_end, job_desc, 
+      isPublic, create_time, user_id, 
+      state, state_time)
+    values (#{jobId,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{jobUnit,jdbcType=VARCHAR}, 
+      #{dateStart,jdbcType=DATE}, #{dateEnd,jdbcType=DATE}, #{jobDesc,jdbcType=VARCHAR}, 
+      #{ispublic,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, 
+      #{state,jdbcType=CHAR}, #{stateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.ar.common.po.UserJob" >
+    insert into user_job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="jobUnit != null" >
+        job_unit,
+      </if>
+      <if test="dateStart != null" >
+        date_start,
+      </if>
+      <if test="dateEnd != null" >
+        date_end,
+      </if>
+      <if test="jobDesc != null" >
+        job_desc,
+      </if>
+      <if test="ispublic != null" >
+        isPublic,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateTime != null" >
+        state_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jobId != null" >
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobUnit != null" >
+        #{jobUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="dateStart != null" >
+        #{dateStart,jdbcType=DATE},
+      </if>
+      <if test="dateEnd != null" >
+        #{dateEnd,jdbcType=DATE},
+      </if>
+      <if test="jobDesc != null" >
+        #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        #{ispublic,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateTime != null" >
+        #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.ar.common.po.UserJob" >
+    update user_job
+    <set >
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobUnit != null" >
+        job_unit = #{jobUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="dateStart != null" >
+        date_start = #{dateStart,jdbcType=DATE},
+      </if>
+      <if test="dateEnd != null" >
+        date_end = #{dateEnd,jdbcType=DATE},
+      </if>
+      <if test="jobDesc != null" >
+        job_desc = #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        isPublic = #{ispublic,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateTime != null" >
+        state_time = #{stateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.ar.common.po.UserJob" >
+    update user_job
+    set job_name = #{jobName,jdbcType=VARCHAR},
+      job_unit = #{jobUnit,jdbcType=VARCHAR},
+      date_start = #{dateStart,jdbcType=DATE},
+      date_end = #{dateEnd,jdbcType=DATE},
+      job_desc = #{jobDesc,jdbcType=VARCHAR},
+      isPublic = #{ispublic,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER},
+      state = #{state,jdbcType=CHAR},
+      state_time = #{stateTime,jdbcType=TIMESTAMP}
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </update>
+</mapper>

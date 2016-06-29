@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.tmms.mapper.MeterialMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.tmms.bean.Meterial" >
+    <id column="mete_id" property="meteId" jdbcType="INTEGER" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="mete_name" property="meteName" jdbcType="VARCHAR" />
+    <result column="mete_path" property="metePath" jdbcType="VARCHAR" />
+    <result column="mete_type" property="meteType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mete_id, model_id, task_id, mete_name, mete_path, mete_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from meterial
+    where mete_id = #{meteId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from meterial
+    where mete_id = #{meteId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.tmms.bean.Meterial" >
+    insert into meterial (mete_id, model_id, task_id, 
+      mete_name, mete_path, mete_type
+      )
+    values (#{meteId,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER}, 
+      #{meteName,jdbcType=VARCHAR}, #{metePath,jdbcType=VARCHAR}, #{meteType,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.tmms.bean.Meterial" >
+    insert into meterial
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="meteId != null" >
+        mete_id,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="meteName != null" >
+        mete_name,
+      </if>
+      <if test="metePath != null" >
+        mete_path,
+      </if>
+      <if test="meteType != null" >
+        mete_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="meteId != null" >
+        #{meteId,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="meteName != null" >
+        #{meteName,jdbcType=VARCHAR},
+      </if>
+      <if test="metePath != null" >
+        #{metePath,jdbcType=VARCHAR},
+      </if>
+      <if test="meteType != null" >
+        #{meteType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.tmms.bean.Meterial" >
+    update meterial
+    <set >
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="meteName != null" >
+        mete_name = #{meteName,jdbcType=VARCHAR},
+      </if>
+      <if test="metePath != null" >
+        mete_path = #{metePath,jdbcType=VARCHAR},
+      </if>
+      <if test="meteType != null" >
+        mete_type = #{meteType,jdbcType=CHAR},
+      </if>
+    </set>
+    where mete_id = #{meteId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.tmms.bean.Meterial" >
+    update meterial
+    set model_id = #{modelId,jdbcType=INTEGER},
+      task_id = #{taskId,jdbcType=INTEGER},
+      mete_name = #{meteName,jdbcType=VARCHAR},
+      mete_path = #{metePath,jdbcType=VARCHAR},
+      mete_type = #{meteType,jdbcType=CHAR}
+    where mete_id = #{meteId,jdbcType=INTEGER}
+  </update>
+</mapper>

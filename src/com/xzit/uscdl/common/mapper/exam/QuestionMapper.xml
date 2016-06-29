@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xzit.uscdl.common.mapper.exam.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.xzit.uscdl.common.po.exam.Question" >
+    <id column="ques_id" property="quesId" jdbcType="INTEGER" />
+    <result column="ques_type" property="quesType" jdbcType="VARCHAR" />
+    <result column="ques_value" property="quesValue" jdbcType="REAL" />
+    <result column="league_session" property="leagueSession" jdbcType="CHAR" />
+    <result column="league_group" property="leagueGroup" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xzit.uscdl.common.po.exam.QuestionWithBLOBs" extends="BaseResultMap" >
+    <result column="ques_stem" property="quesStem" jdbcType="LONGVARCHAR" />
+    <result column="ques_remark" property="quesRemark" jdbcType="LONGVARCHAR" />
+    <result column="ques_answer" property="quesAnswer" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ques_id, ques_type, ques_value, league_session, league_group
+  </sql>
+  <sql id="Blob_Column_List" >
+    ques_stem, ques_remark, ques_answer
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from question
+    where ques_id = #{quesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question
+    where ques_id = #{quesId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xzit.uscdl.common.po.exam.QuestionWithBLOBs" >
+    insert into question (ques_id, ques_type, ques_value, 
+      league_session, league_group, ques_stem, 
+      ques_remark, ques_answer)
+    values (#{quesId,jdbcType=INTEGER}, #{quesType,jdbcType=VARCHAR}, #{quesValue,jdbcType=REAL}, 
+      #{leagueSession,jdbcType=CHAR}, #{leagueGroup,jdbcType=CHAR}, #{quesStem,jdbcType=LONGVARCHAR}, 
+      #{quesRemark,jdbcType=LONGVARCHAR}, #{quesAnswer,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xzit.uscdl.common.po.exam.QuestionWithBLOBs" >
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="quesId != null" >
+        ques_id,
+      </if>
+      <if test="quesType != null" >
+        ques_type,
+      </if>
+      <if test="quesValue != null" >
+        ques_value,
+      </if>
+      <if test="leagueSession != null" >
+        league_session,
+      </if>
+      <if test="leagueGroup != null" >
+        league_group,
+      </if>
+      <if test="quesStem != null" >
+        ques_stem,
+      </if>
+      <if test="quesRemark != null" >
+        ques_remark,
+      </if>
+      <if test="quesAnswer != null" >
+        ques_answer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="quesId != null" >
+        #{quesId,jdbcType=INTEGER},
+      </if>
+      <if test="quesType != null" >
+        #{quesType,jdbcType=VARCHAR},
+      </if>
+      <if test="quesValue != null" >
+        #{quesValue,jdbcType=REAL},
+      </if>
+      <if test="leagueSession != null" >
+        #{leagueSession,jdbcType=CHAR},
+      </if>
+      <if test="leagueGroup != null" >
+        #{leagueGroup,jdbcType=CHAR},
+      </if>
+      <if test="quesStem != null" >
+        #{quesStem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="quesRemark != null" >
+        #{quesRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="quesAnswer != null" >
+        #{quesAnswer,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.uscdl.common.po.exam.QuestionWithBLOBs" >
+    update question
+    <set >
+      <if test="quesType != null" >
+        ques_type = #{quesType,jdbcType=VARCHAR},
+      </if>
+      <if test="quesValue != null" >
+        ques_value = #{quesValue,jdbcType=REAL},
+      </if>
+      <if test="leagueSession != null" >
+        league_session = #{leagueSession,jdbcType=CHAR},
+      </if>
+      <if test="leagueGroup != null" >
+        league_group = #{leagueGroup,jdbcType=CHAR},
+      </if>
+      <if test="quesStem != null" >
+        ques_stem = #{quesStem,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="quesRemark != null" >
+        ques_remark = #{quesRemark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="quesAnswer != null" >
+        ques_answer = #{quesAnswer,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ques_id = #{quesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xzit.uscdl.common.po.exam.QuestionWithBLOBs" >
+    update question
+    set ques_type = #{quesType,jdbcType=VARCHAR},
+      ques_value = #{quesValue,jdbcType=REAL},
+      league_session = #{leagueSession,jdbcType=CHAR},
+      league_group = #{leagueGroup,jdbcType=CHAR},
+      ques_stem = #{quesStem,jdbcType=LONGVARCHAR},
+      ques_remark = #{quesRemark,jdbcType=LONGVARCHAR},
+      ques_answer = #{quesAnswer,jdbcType=LONGVARCHAR}
+    where ques_id = #{quesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xzit.uscdl.common.po.exam.Question" >
+    update question
+    set ques_type = #{quesType,jdbcType=VARCHAR},
+      ques_value = #{quesValue,jdbcType=REAL},
+      league_session = #{leagueSession,jdbcType=CHAR},
+      league_group = #{leagueGroup,jdbcType=CHAR}
+    where ques_id = #{quesId,jdbcType=INTEGER}
+  </update>
+</mapper>
