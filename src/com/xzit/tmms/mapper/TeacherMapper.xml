@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xzit.tmms.mapper.TeacherMapper" >
-  <resultMap id="BaseResultMap" type="com.xzit.tmms.bean.Teacher" >
-    <id column="teacher_id" property="teacherId" jdbcType="INTEGER" />
-    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
-    <result column="unit_id" property="unitId" jdbcType="INTEGER" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    teacher_id, teacher_name, unit_id
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from teacher
+	<resultMap id="BaseResultMap" type="com.xzit.tmms.bean.Teacher" >
+		<id column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+		<result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+		<result column="unit_id" property="unitId" jdbcType="INTEGER" />
+		<result column="teacher_sex" property="teacherSex" jdbcType="VARCHAR" />
+		<result column="teacher_age" property="teacherAge" jdbcType="INTEGER" />
+		<result column="teacher_phone" property="teacherPhone" jdbcType="VARCHAR" />
+		<result column="teacher_location" property="teacherLocation" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+		teacher_id, teacher_name, unit_id, teacher_sex, teacher_age, teacher_phone, teacher_location
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer"
+		>
+		select
+		<include refid="Base_Column_List" />
+		from teacher
     where teacher_id = #{teacherId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from teacher
-    where teacher_id = #{teacherId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.xzit.tmms.bean.Teacher" >
-    insert into teacher (teacher_id, teacher_name, unit_id
-      )
-    values (#{teacherId,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR}, #{unitId,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.xzit.tmms.bean.Teacher" >
-    insert into teacher
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="teacherId != null" >
-        teacher_id,
-      </if>
-      <if test="teacherName != null" >
-        teacher_name,
-      </if>
-      <if test="unitId != null" >
-        unit_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="teacherId != null" >
-        #{teacherId,jdbcType=INTEGER},
-      </if>
-      <if test="teacherName != null" >
-        #{teacherName,jdbcType=VARCHAR},
-      </if>
-      <if test="unitId != null" >
-        #{unitId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xzit.tmms.bean.Teacher" >
-    update teacher
-    <set >
-      <if test="teacherName != null" >
-        teacher_name = #{teacherName,jdbcType=VARCHAR},
-      </if>
-      <if test="unitId != null" >
-        unit_id = #{unitId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where teacher_id = #{teacherId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.xzit.tmms.bean.Teacher" >
-    update teacher
-    set teacher_name = #{teacherName,jdbcType=VARCHAR},
-      unit_id = #{unitId,jdbcType=INTEGER}
-    where teacher_id = #{teacherId,jdbcType=INTEGER}
-  </update>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >delete from teacher
+    where teacher_id = #{teacherId,jdbcType=INTEGER}</delete>
+	<insert id="insert" parameterType="com.xzit.tmms.bean.Teacher" >
+		insert into teacher (teacher_id, teacher_name, unit_id, teacher_sex, teacher_age,
+		teacher_phone, teacher_location) values (#{teacherId,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR},
+		#{unitId,jdbcType=INTEGER}, #{teacherSex,jdbcType=VARCHAR}, #{teacherAge,jdbcType=INTEGER},
+		#{teacherPhone,jdbcType=VARCHAR}, #{teacherLocation,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.xzit.tmms.bean.Teacher" >
+		insert into teacher
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="teacherId != null" >teacher_id,</if>
+			<if test="teacherName != null" >teacher_name,</if>
+			<if test="unitId != null" >unit_id,</if>
+			<if test="teacherSex != null" >teacher_sex,</if>
+			<if test="teacherAge != null" >teacher_age,</if>
+			<if test="teacherPhone != null" >teacher_phone,</if>
+			<if test="teacherLocation != null" >teacher_location,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="teacherId != null" >#{teacherId,jdbcType=INTEGER},</if>
+			<if test="teacherName != null" >#{teacherName,jdbcType=VARCHAR},</if>
+			<if test="unitId != null" >#{unitId,jdbcType=INTEGER},</if>
+			<if test="teacherSex != null" >#{teacherSex,jdbcType=VARCHAR},</if>
+			<if test="teacherAge != null" >#{teacherAge,jdbcType=INTEGER},</if>
+			<if test="teacherPhone != null" >#{teacherPhone,jdbcType=VARCHAR},</if>
+			<if test="teacherLocation != null" >#{teacherLocation,jdbcType=VARCHAR},</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.xzit.tmms.bean.Teacher"
+		>
+		update teacher
+		<set >
+			<if test="teacherName != null" >teacher_name = #{teacherName,jdbcType=VARCHAR},</if>
+			<if test="unitId != null" >unit_id = #{unitId,jdbcType=INTEGER},</if>
+			<if test="teacherSex != null" >teacher_sex = #{teacherSex,jdbcType=VARCHAR},</if>
+			<if test="teacherAge != null" >teacher_age = #{teacherAge,jdbcType=INTEGER},</if>
+			<if test="teacherPhone != null" >teacher_phone = #{teacherPhone,jdbcType=VARCHAR},</if>
+			<if test="teacherLocation != null" >teacher_location = #{teacherLocation,jdbcType=VARCHAR},</if>
+		</set>
+		where teacher_id = #{teacherId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.xzit.tmms.bean.Teacher" >
+		update teacher set teacher_name = #{teacherName,jdbcType=VARCHAR}, unit_id = #{unitId,jdbcType=INTEGER},
+		teacher_sex = #{teacherSex,jdbcType=VARCHAR}, teacher_age = #{teacherAge,jdbcType=INTEGER},
+		teacher_phone = #{teacherPhone,jdbcType=VARCHAR}, teacher_location = #{teacherLocation,jdbcType=VARCHAR}
+		where teacher_id = #{teacherId,jdbcType=INTEGER}
+	</update>
 </mapper>

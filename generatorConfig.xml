@@ -49,39 +49,6 @@
 		<table tableName="${table.t2}" enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
-		<table tableName="${table.t3}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t4}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t5}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t6}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t7}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t8}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t9}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t10}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t11}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t12}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
-		<table tableName="${table.t13}" enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
 		
 	</context>
 </generatorConfiguration>  
